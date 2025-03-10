@@ -1,0 +1,26 @@
+.navbar {
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
+	gap: 40px;
+	background-color: rgb(0, 0, 0);
+	width: 100vw;
+	height: 10vh;
+}
+
+.active {
+	color: #bab0fc;
+}
+
+.active:hover {
+	color: #bab0fc;
+}
+
+.inactive {
+	color: #ffffff;
+}
+
+.inactive:hover {
+	color: #fbe9e9;
+}

@@ -1,0 +1,19 @@
+.Login {
+	display: flex;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	gap: 12px;
+	height: 100vh;
+}
+.LoginHeader {
+	color: rgb(0, 123, 255);
+	font-size: 2em;
+}
+.fieldLabel {
+	margin-right: 46px;
+	color: rgb(0, 123, 255);
+}
+.field {
+	margin-left: 10px;
+}
