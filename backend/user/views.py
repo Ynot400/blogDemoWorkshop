@@ -3,16 +3,20 @@ from .models import User
 from .userSerializer import UserSerializer
 from rest_framework.response import Response
 from rest_framework.decorators import api_view
+from blog.models import Blog
+from blog.blogSerializer import BlogSerializer
 # Create your views here.
 
 @api_view(['POST'])
 def checkUser(request):
-    username = request.data.get('username')
-    password = request.data.get('password')
+    username = request.query_params.get('username')
+    password = request.query_params.get('password')
+
     try:
-        User.objects.get(username=username, password=password)
+        userVerified = User.objects.get(name=username, password=password)
         # return all of their blogs
-        return Response({'authenticated': True})
+        serializedBlogs = BlogSerializer(Blog.objects.filter(user=userVerified), many=True)
+        return Response({'blogs': serializedBlogs.data})
     except User.DoesNotExist:
         return Response({'authenticated': False})
 
@@ -22,6 +26,8 @@ def createUser(request):
     serializer = UserSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save()
+    else:
+        return Response(serializer.errors)
     return Response(serializer.data)
 
 
