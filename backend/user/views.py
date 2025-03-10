@@ -9,9 +9,9 @@ from blog.blogSerializer import BlogSerializer
 
 @api_view(['POST'])
 def checkUser(request):
-    username = request.query_params.get('username')
-    password = request.query_params.get('password')
-
+    username = request.data.get('username')
+    password = request.data.get('password')
+    
     try:
         userVerified = User.objects.get(name=username, password=password)
         # return all of their blogs
