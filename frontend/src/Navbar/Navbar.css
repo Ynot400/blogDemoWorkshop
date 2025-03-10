@@ -10,11 +10,11 @@
 }
 
 .active {
-	color: #bab0fc;
+	color: rgb(255, 203, 157);
 }
 
 .active:hover {
-	color: #bab0fc;
+	color: rgb(255, 203, 157);
 }
 
 .inactive {

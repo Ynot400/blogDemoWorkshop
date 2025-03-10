@@ -3,7 +3,8 @@ import { useContext } from "react";
 import "./Login.css";
 export const Login = () => {
 	// Source Username and Password state from Context
-	const { setUsername, setPassword, setLoggedIn } = useContext(AppContext);
+	const { setUsername, setPassword, logInMsg, getUserPosts } =
+		useContext(AppContext);
 	return (
 		<div className="Login">
 			<h1 className="LoginHeader">Log In</h1>
@@ -32,7 +33,13 @@ export const Login = () => {
 				/>
 			</label>
 			<br />
-			<button onClick={() => setLoggedIn(true)}>Submit</button>
+			<p className="logInMsg">{logInMsg}</p>
+			<button
+				onClick={() => {
+					getUserPosts();
+				}}>
+				Submit
+			</button>
 		</div>
 	);
 };
