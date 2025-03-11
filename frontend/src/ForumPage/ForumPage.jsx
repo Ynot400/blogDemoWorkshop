@@ -1,12 +1,11 @@
 import "./ForumPage.css";
 import { AppContext } from "../methods/AppContext";
 import { useContext } from "react";
-
 export const ForumPage = (props) => {
 	const forumTitle = props.title;
 	const posts = props.posts;
 
-	const { setPostTitle, setPostBody, postPost } = useContext(AppContext);
+	const { setPostTitle, setPostBody, createPost } = useContext(AppContext);
 
 	return (
 		<div className="forumPage">
@@ -26,7 +25,7 @@ export const ForumPage = (props) => {
 					}}></textarea>
 				<button
 					className="submitPost"
-					onClick={() => postPost.mutate()}>
+					onClick={() => createPost.mutate()}>
 					Submit Post
 				</button>
 			</div>
