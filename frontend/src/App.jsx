@@ -9,7 +9,6 @@ import { Home } from "./Home/Home";
 import { Login } from "./Login/LogIn";
 import { getUser } from "./methods/userMethods";
 import { getPosts, postPost } from "./methods/postMethods";
-import { set } from "mongoose";
 
 function App() {
 	// Define queries and mutations
@@ -48,17 +47,17 @@ function App() {
 	});
 
 	// Set Timeout to refetch topic posts every 10 seconds
-	// getTopicPosts({ topic: "sports" });
-	// getTopicPosts({ topic: "food" });
-	// getTopicPosts({ topic: "nature" });
-	// setInterval(() => {
-	// 	getTopicPosts({ topic: "sports" });
-	// 	getTopicPosts({ topic: "food" });
-	// 	getTopicPosts({ topic: "nature" });
-	// }, 10000);
+	getTopicPosts({ topic: "sports" });
+	getTopicPosts({ topic: "food" });
+	getTopicPosts({ topic: "nature" });
+	setInterval(() => {
+		getTopicPosts({ topic: "sports" });
+		getTopicPosts({ topic: "food" });
+		getTopicPosts({ topic: "nature" });
+	}, 10000);
 
 	// Mutation to post a new post
-	const { mutate: postPost } = useMutation({
+	const { mutate: createPost } = useMutation({
 		mutationKey: ["postPost"],
 		mutationFn: () => {
 			return postPost({
@@ -88,16 +87,7 @@ function App() {
 	// Create State to store posts by topic
 
 	const [topicPosts, setTopicPosts] = useState({
-		sports: [
-			{
-				title: "DJ Metcalf",
-				body: "Glorious Day! Glorious Emporer DJ Metcalf has been signed to the Steelers for a five year $150 Million contract!",
-			},
-			{ title: "Basketball", body: "This is a basketball post" },
-			{ title: "Baseball", body: "This is a baseball post" },
-			{ title: "Football", body: "This is a football post" },
-			{ title: "Soccer", body: "This is a soccer post" },
-		],
+		sports: [],
 		food: [],
 		nature: [],
 	});
@@ -123,11 +113,11 @@ function App() {
 				setPostTopic,
 				setPostTitle,
 				setPostBody,
-				postPost,
+				createPost,
 			}}>
 			<Router>
 				<div className="App">
-					{true ? (
+					{loggedIn ? (
 						<>
 							<Navbar />
 							<Routes>
