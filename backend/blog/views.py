@@ -43,7 +43,7 @@ def deleteBlog(request, pk):
     except:
         return Response('Blog does not exist')
     
-@api_view(['POST'])
+@api_view(['GET'])
 def getBlogsTopic(request):
     try:
         topic = request.data.get('topic')
