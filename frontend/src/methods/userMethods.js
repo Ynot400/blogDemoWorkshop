@@ -7,7 +7,7 @@ const getUser = async (props) => {
 	const setLoggedIn = props.setLoggedIn;
 	const setMsg = props.setMsg;
 	const body = {
-		username: username,
+		name: username,
 		password: password
 	};
 	const response = await axios.post(url, body);
