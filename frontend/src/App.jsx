@@ -18,7 +18,7 @@ function App() {
 	const {
 		data: userPosts,
 		isLoading: isUserPostLoading,
-		refetch: getUserPosts,
+		refetch: getUserPosts
 	} = useQuery({
 		queryKey: ["userPosts"],
 		queryFn: () => {
@@ -27,10 +27,10 @@ function App() {
 				password: password,
 				url: url,
 				setLoggedIn: setLoggedIn,
-				setMsg: setLogInMsg,
+				setMsg: setLogInMsg
 			});
 		},
-		enabled: false,
+		enabled: false
 	});
 
 	// Query to get posts from a specific topic
@@ -40,10 +40,10 @@ function App() {
 			return getPosts({
 				topic: props.topic,
 				url: url,
-				setFn: setTopicPosts,
+				setFn: setTopicPosts
 			});
 		},
-		enabled: false,
+		enabled: false
 	});
 
 	// Set Timeout to refetch topic posts every 10 seconds
@@ -57,7 +57,7 @@ function App() {
 	}, 10000);
 
 	// Mutation to post a new post
-	const { mutate: createPost } = useMutation({
+	const { mutation: createPost } = useMutation({
 		mutationKey: ["postPost"],
 		mutationFn: () => {
 			return postPost({
@@ -65,9 +65,9 @@ function App() {
 				topic: newPostTopic,
 				body: newPostBody,
 				username: username,
-				url: url,
+				url: url
 			});
-		},
+		}
 	});
 
 	// Create state to store user data
@@ -89,7 +89,7 @@ function App() {
 	const [topicPosts, setTopicPosts] = useState({
 		sports: [],
 		food: [],
-		nature: [],
+		nature: []
 	});
 
 	return (
@@ -113,7 +113,7 @@ function App() {
 				setPostTopic,
 				setPostTitle,
 				setPostBody,
-				createPost,
+				createPost
 			}}>
 			<Router>
 				<div className="App">

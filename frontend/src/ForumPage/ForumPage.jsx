@@ -34,7 +34,7 @@ export const ForumPage = (props) => {
 				{posts.map((post, i) => (
 					<div className="post" key={i}>
 						<h2 className="postTitle">{post.title}</h2>
-						<p className="postBody">{post.body}</p>
+						<p className="postBody">{post.content}</p>
 					</div>
 				))}
 				{posts.length === 0 && (
