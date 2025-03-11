@@ -9,7 +9,7 @@ from blog.blogSerializer import BlogSerializer
 
 @api_view(['POST'])
 def checkUser(request):
-    username = request.data.get('username')
+    username = request.data.get('name')
     password = request.data.get('password')
     
     try:
