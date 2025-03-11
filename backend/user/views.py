@@ -18,7 +18,7 @@ def checkUser(request):
         serializedBlogs = BlogSerializer(Blog.objects.filter(user=userVerified), many=True)
         return Response({'blogs': serializedBlogs.data})
     except User.DoesNotExist:
-        return Response({'authenticated': False})
+        createUser(request)
 
 
 @api_view(['POST'])
@@ -27,8 +27,8 @@ def createUser(request):
     if serializer.is_valid():
         serializer.save()
     else:
-        return Response(serializer.errors)
-    return Response(serializer.data)
+        return Response({serializer.errors})
+    return Response({'blogs': []})
 
 
 @api_view(['DELETE'])

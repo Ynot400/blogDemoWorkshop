@@ -18,7 +18,6 @@ def getBlogs(request):
 
 @api_view(['POST'])
 def createBlog(request):
-
     serializer = BlogSerializer(data=request.data)
     if serializer.is_valid():
         serializer.save()
