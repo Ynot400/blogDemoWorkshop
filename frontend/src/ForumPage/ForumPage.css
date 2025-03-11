@@ -1,0 +1,75 @@
+.forumPage {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 10px;
+	background-color: black;
+	min-height: 100%;
+	color: rgb(255, 255, 255);
+}
+.forumTitle {
+	margin-bottom: 0.5em;
+	margin-left: 20px;
+	color: rgb(255, 187, 128);
+	font-size: 38pt;
+	text-shadow: 1px 1px 2px #ffc2c2;
+}
+
+.feed {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 28px;
+	margin-top: 20px;
+	padding-bottom: 100px;
+}
+
+.post {
+	border: rgb(255, 255, 255) 1px solid;
+	border-radius: 30px;
+	background-color: black;
+	padding: 0px 20px 10px 20px;
+	width: 80vw;
+}
+
+.postTitle {
+	color: rgb(255, 255, 255);
+	font-size: 24pt;
+	text-shadow: 1px 1px 2px #ffc2c2;
+}
+
+.postBody {
+	color: rgb(255, 255, 255);
+	font-size: 16pt;
+	text-shadow: 1px 1px 2px #ffc2c2;
+}
+.noPosts {
+	color: rgb(255, 255, 255);
+	font-size: 24pt;
+	text-shadow: 1px 1px 2px #ffc2c2;
+}
+.postForm {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	gap: 16px;
+	width: 60vw;
+}
+.postTitleInput {
+	display: block;
+	margin-bottom: 20px;
+	padding: 10px;
+	width: 60vw;
+	color: rgb(255, 255, 255);
+	font-size: 16pt;
+	text-shadow: 1px 1px 2px #ffc2c2;
+}
+.postBodyInput {
+	display: block;
+	margin-bottom: 20px;
+	padding: 10px;
+	width: 60vw;
+	color: rgb(255, 255, 255);
+	font-size: 14pt;
+	text-shadow: 1px 1px 2px #ffc2c2;
+}
