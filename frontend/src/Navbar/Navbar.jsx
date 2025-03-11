@@ -20,7 +20,7 @@ export const Navbar = () => {
 				to="/sports"
 				onClick={() => {
 					setCurrPage("sports");
-					setPostTopic("sports");
+					setPostTopic("Sports");
 				}}
 				className={currPage == "sports" ? "active" : "inactive"}>
 				Sports
@@ -30,7 +30,7 @@ export const Navbar = () => {
 				to="/food"
 				onClick={() => {
 					setCurrPage("food");
-					setPostTopic("food");
+					setPostTopic("Food");
 				}}
 				className={currPage == "food" ? "active" : "inactive"}>
 				Food
@@ -40,7 +40,7 @@ export const Navbar = () => {
 				to="/nature"
 				onClick={() => {
 					setCurrPage("nature");
-					setPostTopic("nature");
+					setPostTopic("Nature");
 				}}
 				className={currPage == "nature" ? "active" : "inactive"}>
 				Nature

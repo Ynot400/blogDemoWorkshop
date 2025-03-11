@@ -9,17 +9,17 @@ export const Home = () => {
 			<h1 className="homeTitle">Home - Hi {username}!</h1>
 			<p className="yourPosts">Your Posts:</p>
 			<div className="feed">
-				{/* {userPosts.map((post) => (
+				{userPosts.map((post) => (
 					<div className="post" key={post.id}>
 						<h2 className="postTitle">{post.title}</h2>
-						<p className="postBody">{post.body}</p>
+						<p className="postBody">{post.content}</p>
 					</div>
 				))}
 				{userPosts.length === 0 && (
 					<p className="noPosts">
 						No posts yet! Be the first to post.
 					</p>
-				)} */}
+				)}
 				<p className="noPosts">You haven't posted anything yet!</p>
 			</div>
 		</div>
