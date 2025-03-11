@@ -1,5 +1,5 @@
 import "./App.css";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { AppContext } from "./methods/AppContext";
 import { Navbar } from "./Navbar/Navbar";
 import { useQuery, useMutation } from "@tanstack/react-query";
@@ -38,7 +38,7 @@ function App() {
 		queryKey: ["topicPosts"],
 		queryFn: (props) => {
 			return getPosts({
-				topic: props.topic,
+				topic: props,
 				url: url,
 				setFn: setTopicPosts
 			});
@@ -46,15 +46,25 @@ function App() {
 		enabled: false
 	});
 
-	// Set Timeout to refetch topic posts every 10 seconds
-	getTopicPosts({ topic: "sports" });
-	getTopicPosts({ topic: "food" });
-	getTopicPosts({ topic: "nature" });
-	setInterval(() => {
-		getTopicPosts({ topic: "sports" });
-		getTopicPosts({ topic: "food" });
-		getTopicPosts({ topic: "nature" });
-	}, 10000);
+	// Define a list of topics you want to fetch
+	const topics = ["Sports", "Food", "Nature"];
+
+	useEffect(() => {
+		// Fetch posts for each topic initially
+		topics.forEach((topic) => {
+			getTopicPosts({ topic });
+		});
+
+		// Set up interval to refetch topic posts every 10 seconds
+		const intervalId = setInterval(() => {
+			topics.forEach((topic) => {
+				getTopicPosts({ topic });
+			});
+		}, 10000);
+
+		// Cleanup interval on component unmount
+		return () => clearInterval(intervalId);
+	}, [getTopicPosts]);
 
 	// Mutation to post a new post
 	const { mutation: createPost } = useMutation({

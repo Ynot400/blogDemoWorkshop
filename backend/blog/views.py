@@ -46,9 +46,11 @@ def deleteBlog(request, pk):
 @api_view(['GET'])
 def getBlogsTopic(request):
     try:
+        print(request.data.get('topic'))
         topic = request.data.get('topic')
         queryset = Blog.objects.filter(topic=topic)
         serializer = BlogSerializer(queryset, many=True)
+        print(serializer.data)
         return Response(serializer.data)
     except:
         return Response('Error retrieving blogs by topic')

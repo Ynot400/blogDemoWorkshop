@@ -10,6 +10,7 @@ const getPosts = async (props) => {
 	};
 	const response = await axios.get(url, body);
 	setFn((prev) => ({ ...prev, [topic]: response.data }));
+	console.log(response.data);
 	return response.data;
 };
 
