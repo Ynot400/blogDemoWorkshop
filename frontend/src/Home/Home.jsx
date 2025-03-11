@@ -16,11 +16,8 @@ export const Home = () => {
 					</div>
 				))}
 				{userPosts.length === 0 && (
-					<p className="noPosts">
-						No posts yet! Be the first to post.
-					</p>
+					<p className="noPosts">You haven't posted anything yet!</p>
 				)}
-				<p className="noPosts">You haven't posted anything yet!</p>
 			</div>
 		</div>
 	);
