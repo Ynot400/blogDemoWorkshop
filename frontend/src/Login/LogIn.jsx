@@ -7,7 +7,7 @@ export const Login = () => {
 		useContext(AppContext);
 	return (
 		<div className="Login">
-			<h1 className="LoginHeader">Log In</h1>
+			<h1 className="LoginHeader">Log In / Register</h1>
 
 			<label className="fieldLabel">
 				User:
