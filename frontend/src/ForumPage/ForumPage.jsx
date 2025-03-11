@@ -1,11 +1,20 @@
 import "./ForumPage.css";
 import { AppContext } from "../methods/AppContext";
 import { useContext } from "react";
+
 export const ForumPage = (props) => {
 	const forumTitle = props.title;
-	const posts = props.posts;
+	let posts = props.posts;
 
-	const { setPostTitle, setPostBody, createPost } = useContext(AppContext);
+	const {
+		setPostTitle,
+		setPostBody,
+		setTopicPosts,
+		topicPosts,
+		newPostTitle,
+		newPostBody,
+		currPage
+	} = useContext(AppContext);
 
 	return (
 		<div className="forumPage">
@@ -25,7 +34,24 @@ export const ForumPage = (props) => {
 					}}></textarea>
 				<button
 					className="submitPost"
-					onClick={() => createPost.mutate()}>
+					onClick={() => {
+						console.log(currPage);
+						setTopicPosts((prev) => ({
+							...prev,
+							[currPage]: [
+								{
+									title: newPostTitle,
+									content: newPostBody
+								},
+								...posts
+							]
+						}));
+						console.log(topicPosts);
+						posts = posts.concat({
+							title: newPostTitle,
+							content: newPostBody
+						});
+					}}>
 					Submit Post
 				</button>
 			</div>
