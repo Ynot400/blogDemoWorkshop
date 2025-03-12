@@ -33,12 +33,14 @@ function App() {
 		enabled: false
 	});
 
+	// State to set current topic
+	const [qTopic, setQTopic] = useState("");
 	// Query to get posts from a specific topic
 	const { refetch: getTopicPosts } = useQuery({
-		queryKey: ["topicPosts"],
-		queryFn: (props) => {
+		queryKey: ["topicPosts", qTopic],
+		queryFn: ({ queryKey }) => {
 			return getPosts({
-				topic: props,
+				topic: queryKey[1],
 				url: url,
 				setFn: setTopicPosts
 			});
@@ -46,25 +48,40 @@ function App() {
 		enabled: false
 	});
 
-	// Define a list of topics you want to fetch
-	const topics = ["Sports", "Food", "Nature"];
+	// useEffect(() => {
+	// 	// Fetch posts for each topic initially
+	// 	setQTopic(() => "Sports");
+	// 	setTimeout(() => {}, 1000);
+	// 	getTopicPosts();
+	// 	setTimeout(() => {}, 1000);
+	// 	setQTopic(() => "Food");
+	// 	setTimeout(() => {}, 1000);
+	// 	getTopicPosts();
+	// 	setTimeout(() => {}, 1000);
+	// 	setQTopic(() => "Nature");
+	// 	setTimeout(() => {}, 1000);
+	// 	getTopicPosts();
+	// 	setTimeout(() => {}, 1000);
 
-	useEffect(() => {
-		// Fetch posts for each topic initially
-		topics.forEach((topic) => {
-			getTopicPosts({ topic });
-		});
+	// 	// Set up interval to refetch topic posts every 10 seconds
+	// 	const intervalId = setInterval(() => {
+	// 		setQTopic(() => "Sports");
+	// 		setTimeout(() => {}, 1000);
+	// 		getTopicPosts();
+	// 		setTimeout(() => {}, 1000);
+	// 		setQTopic(() => "Food");
+	// 		setTimeout(() => {}, 1000);
+	// 		getTopicPosts();
+	// 		setTimeout(() => {}, 1000);
+	// 		setQTopic(() => "Nature");
+	// 		setTimeout(() => {}, 1000);
+	// 		getTopicPosts();
+	// 		setTimeout(() => {}, 1000);
+	// 	}, 10000);
 
-		// Set up interval to refetch topic posts every 10 seconds
-		const intervalId = setInterval(() => {
-			topics.forEach((topic) => {
-				getTopicPosts({ topic });
-			});
-		}, 10000);
-
-		// Cleanup interval on component unmount
-		return () => clearInterval(intervalId);
-	}, [getTopicPosts]);
+	// 	// Cleanup interval on component unmount
+	// 	return () => clearInterval(intervalId);
+	// }, [getTopicPosts]);
 
 	// Mutation to post a new post
 	const { mutation: createPost } = useMutation({
@@ -97,9 +114,84 @@ function App() {
 	// Create State to store posts by topic
 
 	const [topicPosts, setTopicPosts] = useState({
-		sports: [],
-		food: [],
-		nature: []
+		sports: [
+			{
+				title: "DJ Metcalf",
+				content:
+					"Seahawks Star WR gets traded to the Steelers on a 5 year, $150 Million deal."
+			},
+			{
+				title: "LeBron James",
+				content:
+					"LeBron James scores 50 points in a thrilling game against the Warriors."
+			},
+			{
+				title: "Olympics 2024",
+				content:
+					"The 2024 Summer Olympics will be held in Paris, France."
+			},
+			{
+				title: "Tom Brady",
+				content:
+					"Tom Brady announces his retirement after 22 seasons in the NFL."
+			},
+			{
+				title: "NBA Playoffs",
+				content: "The NBA Playoffs are set to begin on April 16th."
+			}
+		],
+		food: [
+			{
+				title: "Best Pizza Places",
+				content: "Check out these top 10 pizza places in New York City."
+			},
+			{
+				title: "Vegan Recipes",
+				content:
+					"Discover delicious vegan recipes that are easy to make."
+			},
+			{
+				title: "Healthy Eating",
+				content:
+					"Learn about the benefits of healthy eating and how to get started."
+			},
+			{
+				title: "Food Festivals",
+				content: "Find out about upcoming food festivals in your area."
+			},
+			{
+				title: "Cooking Classes",
+				content:
+					"Sign up for cooking classes to improve your culinary skills."
+			}
+		],
+		nature: [
+			{
+				title: "National Parks",
+				content:
+					"Explore the beauty of national parks across the United States."
+			},
+			{
+				title: "Wildlife Conservation",
+				content:
+					"Learn about efforts to conserve wildlife and protect endangered species."
+			},
+			{
+				title: "Hiking Trails",
+				content:
+					"Discover the best hiking trails for beginners and experienced hikers."
+			},
+			{
+				title: "Eco-Friendly Living",
+				content:
+					"Find tips on how to live a more eco-friendly lifestyle and reduce your carbon footprint."
+			},
+			{
+				title: "Camping Gear",
+				content:
+					"Get recommendations on the best camping gear for your next outdoor adventure."
+			}
+		]
 	});
 
 	return (
@@ -123,6 +215,7 @@ function App() {
 				setPostTopic,
 				setPostTitle,
 				setPostBody,
+				setTopicPosts,
 				createPost
 			}}>
 			<Router>

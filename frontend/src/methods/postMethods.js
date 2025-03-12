@@ -3,6 +3,7 @@ import axios from "axios";
 // Handler for getting posts from a specific topic
 const getPosts = async (props) => {
 	const topic = props.topic;
+	console.log(topic);
 	const url = props.url + "blogs-topic/";
 	const setFn = props.setFn;
 	const body = {
