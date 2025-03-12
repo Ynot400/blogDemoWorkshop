@@ -5,7 +5,16 @@ from rest_framework.response import Response
 from rest_framework.decorators import api_view
 from blog.models import Blog
 from blog.blogSerializer import BlogSerializer
-# Create your views here.
+
+#These are the views that will be called when the user makes a request to the server.
+#The views will interact with the database and return the appropriate response.
+#The views are decorated with the @api_view decorator which allows us to use the function based views.
+#The @api_view decorator is used to create a view that responds to HTTP requests.
+# Because Django is not a perfect model of the MVC, think of the views as 1/2 of the controller in the MVC model.
+
+# You can call models based on .objects.get() or .objects.filter() to get the data from the database.
+
+# Request.data.get is the usual way to get json data from the request.
 
 @api_view(['POST'])
 def checkUser(request):
